@@ -1,0 +1,23 @@
+Tetris pelin käyttöohje:
+
+Peli alkaa käyttäjän painaessa start nappia. Sitä ennen käyttäjä on voinut valita itselleen käyttäjänimen kirjoittamalla sen "Player:" tekstin osoittamaan paikkaan. Jos nimen kumittaa pois alueelta nimeä ei käytetä pisteiden esittelyssä. Start napin painalluksen jälkeen alkaa tetris palasia tippumaan valkoiselle ruudulle. Uusi palanen tulee aina edellisen pysähdyttyä. Palaset ovat hetken aikaa rakentamisen jälkeen ruudun ulkopuolella pelin helpottamista varten. Palasia voidaan siirtää sivusuunnassa näppäinkomennoilla D=oikealle ja A=vasemalle. Palasen tippumista voi myös nopeuttaa painamalla S=näppäintä. Pelaaja saa pisteitä jokaisesta tiputetusta palasesta. Pisteet voi nähdä kesken pelin "Current score:" tekstin vieressä olevasta numero alueesta. Peli päättyy tilanteessa, jossa osa palasesta on jäänyt ruudun yläpuolelle. Pelin päätyttyä tulos tallennetaan tuloslistaan. Alkuperäiseen tetrisversion rivienpoistoa ei ole toteutettu.
+Pelin voi myös halutessaan pysäyttää ja jatkaa painamalla "Pause" nappia. "Retry" nappi aloittaa uuden pelin ja vanhan pelin tulos tallentuu tuloslistaan.
+
+Toteutetut lisäominaisuudet:
+
+1.Seitsemän tetronomia tehty
+3.Tetronomia voi hetken aikaa siirtää sivusuunnassa sen jo osuttua toiseen tetronomiin tai pelialueen pohjaan
+6.Pelissä simppeli pistelasku, joka laskee tiputettujen tetrojen määrän.
+8.Tetronomien putoaminen nopeutuu ppelin edetessä. Aina kun pisteet on jaollisia kymmenellä peli nopeutuu.
+9.Pelin voi aloittaa alusta sulkematta ohjelmaa "Retry" nappia painamalla.
+10.Tulostaulu tehty, mutta tulokset eivät tallennu ohjelman ulkopuolelle.
+13.Tetronomin voi tiputtaa niin alas kuin mahdollista S-nappia painamalla.
+
+Rakenne:
+
+Pelin rakenne on sellainen, että pääikkunassa on QGraphicsScene, jossa tetrispalaset liikkuvat. Tetris palaset ovat tehty siten, että jokainen palanen sisältää 4 pientä palasta ja nämä neljä on tallennettu vektoriin moving_. Palaset ovat QtGraphicsRectItemeitä. Kun palasten täytyy liikkua, ensin testataan, että onko liikesuunta sallittu ja jos suunta on sallittu tetris palasen jokaista osa palasta liikutetaan. Aina ku palaset liikkuvat tarkistetaan myös osuuko ne toiseen jo pysähtyneeseen palaseen. Tämä on toteutettu QtCreatorin contains funktiolla, joka palauttaa true, jos jokin osan GraphicsItemistä on toisen GraphicsItemin sisällä. Pelin reunojen ylittämisen esto on tehty samalla tavalla, mutta nyt toinen Itemi onkin QGraphicsScene. Peli loppuu silloin kuin ohjelma tunnistaa sen, että jokin palasen osa palasista on pysähtynyt pelialueen yläpuolelle. Tämä tarkistus tehdään tarkistamalla palasen y-koordinaatti.
+
+Suunnittelupäätökset:
+
+Alkuperäisenä ideana oli toteuttaa palaset GraphicsItemGroupilla, mutta en saanut sitä toimimaan halutulla tavalla, joten päädyttiin vektori ratkaisuun. Muuten ohjelman rakenteen suunnittelupäätökset ovat samat kun päätyivät lopulliseen ohjelmaan.
+
